@@ -939,3 +939,227 @@ checkoutForm.addEventListener("submit", function (event) {
 
 
 });
+
+/* CHECKOUT FUNCTIONALITY */
+document.addEventListener("DOMContentLoaded", function () {
+const checkoutForm = document.getElementById("checkoutForm");
+
+
+if (!checkoutForm) return;
+
+const checkoutItemsContainer = document.getElementById("checkoutItems");
+const subtotalElement = document.getElementById("checkoutSubtotal");
+const totalElement = document.getElementById("checkoutTotal");
+const checkoutMessage = document.getElementById("checkoutMessage");
+const customerNameInput = document.getElementById("customerName");
+const placeOrderButton = document.getElementById("placeOrderButton");
+
+function getSavedCart() {
+    try {
+        const cart = JSON.parse(
+            localStorage.getItem("harvestHubCart") || "[]"
+        );
+
+        return Array.isArray(cart) ? cart : [];
+    } catch (error) {
+        return [];
+    }
+}
+
+function formatPrice(amount) {
+    return formatHarvestHubPrice(amount);
+}
+
+function showCheckoutMessage(message, isError = true) {
+    checkoutMessage.textContent = message;
+    checkoutMessage.style.color = isError ? "#c62828" : "#267747";
+}
+
+function renderCheckoutSummary() {
+    const cart = getSavedCart();
+
+    const validItems = cart.filter(function (item) {
+        return harvestHubProducts.some(function (product) {
+            return product.id === item.productId;
+        });
+    });
+
+    const cartProducts = validItems.map(function (item) {
+        const product = harvestHubProducts.find(function (product) {
+            return product.id === item.productId;
+        });
+
+        const quantity = Math.max(
+            1,
+            Math.floor(Number(item.quantity) || 1)
+        );
+
+        return {
+            product: product,
+            quantity: quantity,
+            subtotal: product.price * quantity
+        };
+    });
+
+    if (cartProducts.length === 0) {
+        checkoutItemsContainer.innerHTML =
+            '<p class="checkout-section-description">Your cart is empty. Add some products before checking out.</p>';
+
+        subtotalElement.textContent = formatPrice(0);
+        totalElement.textContent = formatPrice(0);
+        placeOrderButton.disabled = true;
+
+        showCheckoutMessage(
+            "Your cart is empty. Please return to the marketplace.",
+            true
+        );
+
+        return [];
+    }
+
+    checkoutItemsContainer.innerHTML = cartProducts.map(function (item) {
+        return `
+            <div class="checkout-item">
+                <div class="checkout-item-info">
+                    <strong>${item.product.name}</strong>
+                    <p>${item.quantity} × ${formatPrice(item.product.price)}</p>
+                </div>
+
+                <span class="checkout-item-price">
+                    ${formatPrice(item.subtotal)}
+                </span>
+            </div>
+        `;
+    }).join("");
+
+    const subtotal = cartProducts.reduce(function (sum, item) {
+        return sum + item.subtotal;
+    }, 0);
+
+    subtotalElement.textContent = formatPrice(subtotal);
+    totalElement.textContent = formatPrice(subtotal);
+
+    placeOrderButton.disabled = false;
+
+    return cartProducts;
+}
+
+// Fill the customer's name using the name entered during demo login.
+const savedBuyerName = localStorage.getItem("harvestHubBuyer");
+
+if (savedBuyerName && !customerNameInput.value) {
+    customerNameInput.value = savedBuyerName;
+}
+
+let checkoutProducts = renderCheckoutSummary();
+
+checkoutForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    checkoutProducts = renderCheckoutSummary();
+
+    if (checkoutProducts.length === 0) {
+        showCheckoutMessage(
+            "Your cart is empty. Please add products before placing an order."
+        );
+        return;
+    }
+
+    const customerName = customerNameInput.value.trim();
+    const customerPhone = document.getElementById("customerPhone").value.trim();
+    const customerEmail = document.getElementById("customerEmail").value.trim();
+    const deliveryDistrict = document.getElementById("deliveryDistrict").value.trim();
+    const deliveryAddress = document.getElementById("deliveryAddress").value.trim();
+    const orderNotes = document.getElementById("orderNotes").value.trim();
+
+    if (
+        !customerName ||
+        !customerPhone ||
+        !deliveryDistrict ||
+        !deliveryAddress
+    ) {
+        showCheckoutMessage(
+            "Please complete all required contact and delivery fields."
+        );
+        return;
+    }
+
+    // Check that the requested quantities do not exceed available stock.
+    for (const item of checkoutProducts) {
+        if (item.quantity > Number(item.product.quantity)) {
+            showCheckoutMessage(
+                "The requested quantity for " +
+                item.product.name +
+                " exceeds the available stock. Please update your cart."
+            );
+            return;
+        }
+    }
+
+    const orderTotal = checkoutProducts.reduce(function (sum, item) {
+        return sum + item.subtotal;
+    }, 0);
+
+    const order = {
+        orderId: "HH-" + Date.now(),
+        orderDate: new Date().toISOString(),
+        status: "Order Placed",
+        customer: {
+            name: customerName,
+            phone: customerPhone,
+            email: customerEmail
+        },
+        delivery: {
+            district: deliveryDistrict,
+            address: deliveryAddress,
+            notes: orderNotes
+        },
+        items: checkoutProducts.map(function (item) {
+            return {
+                productId: item.product.id,
+                name: item.product.name,
+                image: item.product.image,
+                farmerBusiness: item.product.farmerBusiness,
+                price: item.product.price,
+                unit: item.product.unit,
+                quantity: item.quantity,
+                subtotal: item.subtotal
+            };
+        }),
+        subtotal: orderTotal,
+        total: orderTotal
+    };
+
+    let savedOrders = [];
+
+    try {
+        const existingOrders = JSON.parse(
+            localStorage.getItem("harvestHubOrders") || "[]"
+        );
+
+        savedOrders = Array.isArray(existingOrders)
+            ? existingOrders
+            : [];
+    } catch (error) {
+        savedOrders = [];
+    }
+
+    savedOrders.push(order);
+
+    localStorage.setItem(
+        "harvestHubOrders",
+        JSON.stringify(savedOrders)
+    );
+
+    localStorage.setItem(
+        "harvestHubLastOrder",
+        JSON.stringify(order)
+    );
+
+    localStorage.removeItem("harvestHubCart");
+
+    window.location.href = "order-confirmation.html";
+});
+
+
+});

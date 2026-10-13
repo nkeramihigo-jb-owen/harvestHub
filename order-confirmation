@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation | HarvestHub</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/app.js" defer></script>
+</head>
+<body class="confirmation-page">
+
+
+<header class="site-header marketplace-header">
+    <div class="container header-content">
+        <a href="marketplace.html" class="logo">HarvestHub</a>
+
+        <nav class="header-nav">
+            <a href="marketplace.html">Marketplace</a>
+            <a href="cart.html">
+                Cart (<span id="cartCount">0</span>)
+            </a>
+            <button type="button" id="logoutButton" class="logout-button">
+                Logout
+            </button>
+        </nav>
+    </div>
+</header>
+
+<main class="container confirmation-main">
+
+    <section class="confirmation-success">
+        <p class="confirmation-label">ORDER CONFIRMED</p>
+
+        <h1>Thank you for your order!</h1>
+
+        <p>
+            Your order has been recorded successfully.
+            Review your order details below.
+        </p>
+
+        <div class="confirmation-order-number">
+            <span>Order Number</span>
+            <strong id="confirmationOrderNumber">Loading...</strong>
+        </div>
+    </section>
+
+    <section class="confirmation-layout">
+
+        <div class="confirmation-card">
+            <h2>Order Summary</h2>
+
+            <div id="confirmationItems" class="confirmation-items">
+                <p>Loading your order details...</p>
+            </div>
+
+            <div class="confirmation-total">
+                <span>Total Amount</span>
+                <strong id="confirmationTotal">UGX 0</strong>
+            </div>
+        </div>
+
+        <div class="confirmation-card">
+            <h2>Delivery Information</h2>
+
+            <div class="confirmation-detail">
+                <span>Customer Name</span>
+                <strong id="confirmationCustomer">—</strong>
+            </div>
+
+            <div class="confirmation-detail">
+                <span>Phone Number</span>
+                <strong id="confirmationPhone">—</strong>
+            </div>
+
+            <div class="confirmation-detail">
+                <span>Email Address</span>
+                <strong id="confirmationEmail">Not provided</strong>
+            </div>
+
+            <div class="confirmation-detail">
+                <span>District</span>
+                <strong id="confirmationDistrict">—</strong>
+            </div>
+
+            <div class="confirmation-detail">
+                <span>Delivery Address</span>
+                <strong id="confirmationAddress">—</strong>
+            </div>
+
+            <div class="confirmation-detail">
+                <span>Order Status</span>
+                <strong id="confirmationStatus">Order Placed</strong>
+            </div>
+
+            <div class="confirmation-detail">
+                <span>Order Date</span>
+                <strong id="confirmationDate">—</strong>
+            </div>
+
+            <div id="confirmationNotesSection" class="confirmation-detail" hidden>
+                <span>Additional Notes</span>
+                <strong id="confirmationNotes">—</strong>
+            </div>
+        </div>
+
+    </section>
+
+    <div class="confirmation-actions">
+        <a href="marketplace.html" class="btn btn-primary">
+            Continue Shopping
+        </a>
+    </div>
+
+    <p id="confirmationMessage" class="confirmation-message" role="status"></p>
+
+</main>
+
+<footer class="site-footer">
+    <div class="container">
+        <p>© 2026 HarvestHub. All rights reserved.</p>
+    </div>
+</footer>
+
+
+</body>
+</html>
