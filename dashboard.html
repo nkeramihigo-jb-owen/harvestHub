@@ -13,29 +13,18 @@
 <body class="dashboard-page">
 
     <header class="site-header marketplace-header">
-        <div class="container header-content">
+    <div class="container header-content">
+        <a href="dashboard.html" class="logo">HarvestHub</a>
 
-            <a href="dashboard.html" class="logo">HarvestHub</a>
-
-            <nav class="header-nav">
-                <a href="dashboard.html" class="dashboard-active">Dashboard</a>
-                <a href="marketplace.html">Explore Market</a>
-
-                <a href="cart.html">
-                    Cart (<span id="cartCount">0</span>)
-                </a>
-
-                <button
-                    type="button"
-                    id="logoutButton"
-                    class="logout-button"
-                >
-                    Logout
-                </button>
-            </nav>
-
-        </div>
-    </header>
+        <nav class="main-nav">
+            <a href="marketplace.html" class="nav-link">Explore Market</a>
+            <a href="cart.html" class="nav-link active">Cart (<span id="cartCount">0</span>)</a>
+            <button type="button" class="logout-button" id="logoutButton">
+                Logout
+            </button>
+        </nav>
+    </div>
+</header>
 
 
     <main class="dashboard-main">
