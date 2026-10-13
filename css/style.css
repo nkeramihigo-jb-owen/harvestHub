@@ -1519,3 +1519,262 @@ padding-bottom: 40px;
 
 
 }
+
+/* Dashboard-Page */
+.dashboard-page {
+background: #f5f8f5;
+}
+
+.dashboard-active {
+color: #267747 !important;
+font-weight: 700;
+}
+
+.dashboard-main {
+min-height: 70vh;
+}
+
+.dashboard-welcome {
+padding: 65px 0;
+background: #eaf4ec;
+border-bottom: 1px solid #dce9de;
+}
+
+.dashboard-welcome-content {
+display: grid;
+grid-template-columns: 1.3fr 0.7fr;
+align-items: center;
+gap: 55px;
+}
+
+.dashboard-label {
+margin: 0 0 13px;
+color: #267747;
+font-size: 12px;
+font-weight: 800;
+letter-spacing: 1.8px;
+}
+
+.dashboard-welcome-text h1 {
+margin: 0 0 20px;
+color: #183d29;
+font-size: clamp(32px, 4vw, 48px);
+line-height: 1.2;
+}
+
+#dashboardBuyerName {
+color: #267747;
+overflow-wrap: anywhere;
+}
+
+.dashboard-welcome-text > p:not(.dashboard-label) {
+max-width: 570px;
+margin: 0 0 28px;
+color: #5c6c60;
+font-size: 16px;
+line-height: 1.8;
+}
+
+.dashboard-welcome-text .btn {
+display: inline-block;
+text-decoration: none;
+}
+
+.dashboard-welcome-note {
+padding: 30px;
+background: #ffffff;
+border: 1px solid #dce9de;
+border-radius: 14px;
+}
+
+.welcome-note-label {
+margin: 0 0 15px;
+color: #267747;
+font-size: 11px;
+font-weight: 800;
+letter-spacing: 1.5px;
+}
+
+.dashboard-welcome-note h2 {
+margin: 0 0 15px;
+color: #183d29;
+font-size: 25px;
+line-height: 1.4;
+}
+
+.dashboard-welcome-note > p:last-child {
+margin: 0;
+color: #657268;
+font-size: 14px;
+line-height: 1.9;
+}
+
+.dashboard-overview {
+padding: 65px 0;
+}
+
+.dashboard-section-heading {
+max-width: 650px;
+margin-bottom: 30px;
+}
+
+.dashboard-section-heading h2 {
+margin: 0 0 12px;
+color: #183d29;
+font-size: clamp(25px, 3vw, 32px);
+}
+
+.dashboard-section-heading > p:last-child {
+margin: 0;
+color: #657268;
+font-size: 15px;
+line-height: 1.8;
+}
+
+.dashboard-stat-grid {
+display: grid;
+grid-template-columns: repeat(3, minmax(0, 1fr));
+gap: 22px;
+}
+
+.dashboard-stat-card {
+padding: 27px;
+background: #ffffff;
+border: 1px solid #e0eae2;
+border-radius: 12px;
+transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dashboard-stat-card:hover {
+transform: translateY(-3px);
+box-shadow: 0 8px 24px rgba(24, 61, 41, 0.07);
+}
+
+.dashboard-stat-card h3 {
+margin: 0 0 18px;
+color: #405448;
+font-size: 15px;
+}
+
+.dashboard-stat-number {
+margin: 0 0 12px;
+color: #267747;
+font-size: 38px;
+font-weight: 800;
+}
+
+.dashboard-stat-card > p:last-child {
+margin: 0;
+color: #718075;
+font-size: 13px;
+line-height: 1.8;
+}
+
+.dashboard-about {
+padding: 65px 0;
+background: #ffffff;
+border-top: 1px solid #e4ece5;
+border-bottom: 1px solid #e4ece5;
+}
+
+.dashboard-about-grid {
+display: grid;
+grid-template-columns: repeat(3, minmax(0, 1fr));
+gap: 22px;
+}
+
+.dashboard-about-card {
+padding: 26px;
+background: #f7faf7;
+border: 1px solid #e3ebe4;
+border-radius: 12px;
+}
+
+.dashboard-about-card h3 {
+margin: 0 0 13px;
+color: #183d29;
+font-size: 19px;
+}
+
+.dashboard-about-card p {
+margin: 0;
+color: #657268;
+font-size: 14px;
+line-height: 1.9;
+}
+
+.dashboard-explore {
+padding: 55px 0;
+}
+
+.dashboard-explore-content {
+display: flex;
+justify-content: space-between;
+align-items: center;
+gap: 30px;
+padding: 35px;
+background: #eaf4ec;
+border: 1px solid #dce9de;
+border-radius: 14px;
+}
+
+.dashboard-explore-content h2 {
+margin: 0 0 12px;
+color: #183d29;
+font-size: clamp(23px, 3vw, 30px);
+}
+
+.dashboard-explore-content > div > p:last-child {
+margin: 0;
+color: #657268;
+font-size: 14px;
+line-height: 1.8;
+}
+
+.dashboard-explore-content .btn {
+flex-shrink: 0;
+text-decoration: none;
+}
+
+@media (max-width: 850px) {
+.dashboard-welcome-content {
+grid-template-columns: 1fr;
+gap: 35px;
+}
+
+.dashboard-stat-grid,
+.dashboard-about-grid {
+    grid-template-columns: 1fr;
+}
+
+.dashboard-explore-content {
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+}
+
+@media (max-width: 600px) {
+.dashboard-welcome {
+padding: 42px 0;
+}
+
+.dashboard-overview,
+.dashboard-about {
+    padding: 45px 0;
+}
+
+.dashboard-stat-card,
+.dashboard-about-card {
+    padding: 22px;
+}
+
+.dashboard-explore {
+    padding: 35px 0;
+}
+
+.dashboard-explore-content {
+    padding: 25px 20px;
+}
+
+}

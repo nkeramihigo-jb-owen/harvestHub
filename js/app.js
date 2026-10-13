@@ -21,7 +21,7 @@ if (loginForm) {
 
         localStorage.setItem("harvestHubBuyer", buyerName);
 
-        window.location.href = "marketplace.html";
+        window.location.href = "dashboard.html";
     });
 }
 
@@ -1287,4 +1287,72 @@ messageElement.textContent =
     "Your order details are saved in this browser for this demonstration.";
 
 
+});
+
+/* BUYER DASHBOARD FUNCTIONALITY */
+document.addEventListener("DOMContentLoaded", function () {
+    const buyerNameElement = document.getElementById("dashboardBuyerName");
+
+    if (!buyerNameElement) return;
+
+    const buyerName = localStorage.getItem("harvestHubBuyer");
+
+    buyerNameElement.textContent = buyerName || "Buyer";
+
+    // Count products and distinct farming businesses.
+    const productCountElement = document.getElementById(
+        "dashboardProductCount"
+    );
+
+    const farmerCountElement = document.getElementById(
+        "dashboardFarmerCount"
+    );
+
+    const categoryCountElement = document.getElementById(
+        "dashboardCategoryCount"
+    );
+
+    if (typeof harvestHubProducts !== "undefined") {
+        productCountElement.textContent = harvestHubProducts.length;
+
+        const farmingBusinesses = new Set(
+            harvestHubProducts.map(function (product) {
+                return product.farmerBusiness;
+            }).filter(Boolean)
+        );
+
+        farmerCountElement.textContent = farmingBusinesses.size;
+    }
+
+    // General marketplace categories, not a product listing section.
+    categoryCountElement.textContent = "5";
+
+    // Update the cart quantity displayed in the header.
+    try {
+        const cart = JSON.parse(
+            localStorage.getItem("harvestHubCart") || "[]"
+        );
+
+        const cartCount = cart.reduce(function (total, item) {
+            return total + Math.max(0, Number(item.quantity) || 0);
+        }, 0);
+
+        document.querySelectorAll("#cartCount").forEach(function (element) {
+            element.textContent = cartCount;
+        });
+    } catch (error) {
+        document.querySelectorAll("#cartCount").forEach(function (element) {
+            element.textContent = "0";
+        });
+    }
+
+    // Log out the demo buyer.
+    const logoutButton = document.getElementById("logoutButton");
+
+    if (logoutButton) {
+        logoutButton.addEventListener("click", function () {
+            localStorage.removeItem("harvestHubBuyer");
+            window.location.href = "login.html";
+        });
+    }
 });

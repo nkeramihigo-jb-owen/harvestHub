@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Buyer Dashboard | HarvestHub</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/app.js" defer></script>
+</head>
+
+<body class="dashboard-page">
+
+    <header class="site-header marketplace-header">
+        <div class="container header-content">
+
+            <a href="dashboard.html" class="logo">HarvestHub</a>
+
+            <nav class="header-nav">
+                <a href="dashboard.html" class="dashboard-active">Dashboard</a>
+                <a href="marketplace.html">Explore Market</a>
+
+                <a href="cart.html">
+                    Cart (<span id="cartCount">0</span>)
+                </a>
+
+                <button
+                    type="button"
+                    id="logoutButton"
+                    class="logout-button"
+                >
+                    Logout
+                </button>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <main class="dashboard-main">
+
+        <!-- WELCOME SECTION -->
+        <section class="dashboard-welcome">
+            <div class="container dashboard-welcome-content">
+
+                <div class="dashboard-welcome-text">
+                    <p class="dashboard-label">YOUR HARVESTHUB DASHBOARD</p>
+
+                    <h1>
+                        Welcome,
+                        <span id="dashboardBuyerName">Buyer</span>!
+                    </h1>
+
+                    <p>
+                        Discover fresh agricultural products, connect with
+                        local farmers, and shop conveniently through
+                        HarvestHub.
+                    </p>
+
+                    <a href="marketplace.html" class="btn btn-primary">
+                        Explore Market
+                    </a>
+                </div>
+
+                <div class="dashboard-welcome-note">
+                    <p class="welcome-note-label">OUR PURPOSE</p>
+
+                    <h2>Bringing farms closer to you.</h2>
+
+                    <p>
+                        HarvestHub makes it easier for buyers to discover
+                        agricultural products and learn about the farmers
+                        and businesses that supply them.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- MARKET OVERVIEW -->
+        <section class="dashboard-overview">
+            <div class="container">
+
+                <div class="dashboard-section-heading">
+                    <p class="dashboard-label">AT A GLANCE</p>
+
+                    <h2>Your marketplace overview</h2>
+
+                    <p>
+                        Get to know the products, farmers, and variety
+                        available through HarvestHub.
+                    </p>
+                </div>
+
+
+                <div class="dashboard-stat-grid">
+
+                    <article class="dashboard-stat-card">
+                        <h3>Available Products</h3>
+
+                        <p class="dashboard-stat-number"
+                           id="dashboardProductCount">0</p>
+
+                        <p>
+                            Agricultural products listed in our marketplace.
+                        </p>
+                    </article>
+
+
+                    <article class="dashboard-stat-card">
+                        <h3>Farming Businesses</h3>
+
+                        <p class="dashboard-stat-number"
+                           id="dashboardFarmerCount">0</p>
+
+                        <p>
+                            Businesses represented by the available listings.
+                        </p>
+                    </article>
+
+
+                    <article class="dashboard-stat-card">
+                        <h3>Product Categories</h3>
+
+                        <p class="dashboard-stat-number"
+                           id="dashboardCategoryCount">5</p>
+
+                        <p>
+                            Different types of agricultural goods to explore.
+                        </p>
+                    </article>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ABOUT THE MARKETPLACE -->
+        <section class="dashboard-about">
+            <div class="container">
+
+                <div class="dashboard-section-heading">
+                    <p class="dashboard-label">GET TO KNOW US</p>
+
+                    <h2>About Our Marketplace</h2>
+
+                    <p>
+                        HarvestHub provides a convenient place to discover
+                        agricultural products and the businesses behind them.
+                    </p>
+                </div>
+
+
+                <div class="dashboard-about-grid">
+
+                    <article class="dashboard-about-card">
+                        <h3>Our Products</h3>
+
+                        <p>
+                            Explore everyday agricultural goods, including
+                            fresh vegetables, fruits, grains, dairy products,
+                            and poultry products.
+                        </p>
+                    </article>
+
+
+                    <article class="dashboard-about-card">
+                        <h3>Our Farmers</h3>
+
+                        <p>
+                            Discover products listed by farming businesses
+                            and agricultural cooperatives, with seller
+                            information available for each listing.
+                        </p>
+                    </article>
+
+
+                    <article class="dashboard-about-card">
+                        <h3>Simple Shopping</h3>
+
+                        <p>
+                            Search for products, compare prices, select
+                            quantities, and submit your delivery details
+                            through a straightforward shopping process.
+                        </p>
+                    </article>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- EXPLORE SECTION -->
+        <section class="dashboard-explore">
+            <div class="container dashboard-explore-content">
+
+                <div>
+                    <p class="dashboard-label">READY TO SHOP?</p>
+
+                    <h2>Find what you need in the market.</h2>
+
+                    <p>
+                        Browse the available listings and discover products
+                        from agricultural businesses.
+                    </p>
+                </div>
+
+                <a href="marketplace.html" class="btn btn-primary">
+                    Explore Market
+                </a>
+
+            </div>
+        </section>
+
+    </main>
+
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>© 2026 HarvestHub. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
