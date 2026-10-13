@@ -1163,3 +1163,128 @@ checkoutForm.addEventListener("submit", function (event) {
 
 
 });
+
+/* ORDER CONFIRMATION FUNCTIONALITY */
+document.addEventListener("DOMContentLoaded", function () {
+const confirmationItems = document.getElementById("confirmationItems");
+
+
+if (!confirmationItems) return;
+
+const orderNumber = document.getElementById("confirmationOrderNumber");
+const totalElement = document.getElementById("confirmationTotal");
+const messageElement = document.getElementById("confirmationMessage");
+
+function formatPrice(amount) {
+    return formatHarvestHubPrice(amount);
+}
+
+let order;
+
+try {
+    order = JSON.parse(
+        localStorage.getItem("harvestHubLastOrder") || "null"
+    );
+} catch (error) {
+    order = null;
+}
+
+if (!order || !Array.isArray(order.items) || order.items.length === 0) {
+    confirmationItems.innerHTML =
+        "<p>No recent order was found in this browser.</p>";
+
+    orderNumber.textContent = "Unavailable";
+    totalElement.textContent = formatPrice(0);
+
+    messageElement.textContent =
+        "Please visit the marketplace to start a new order.";
+
+    return;
+}
+
+orderNumber.textContent = order.orderId || "Unavailable";
+totalElement.textContent = formatPrice(order.total || 0);
+
+document.getElementById("confirmationCustomer").textContent =
+    order.customer?.name || "—";
+
+document.getElementById("confirmationPhone").textContent =
+    order.customer?.phone || "—";
+
+document.getElementById("confirmationEmail").textContent =
+    order.customer?.email || "Not provided";
+
+document.getElementById("confirmationDistrict").textContent =
+    order.delivery?.district || "—";
+
+document.getElementById("confirmationAddress").textContent =
+    order.delivery?.address || "—";
+
+document.getElementById("confirmationStatus").textContent =
+    order.status || "Order Placed";
+
+const notes = order.delivery?.notes || "";
+const notesSection = document.getElementById("confirmationNotesSection");
+
+if (notes) {
+    document.getElementById("confirmationNotes").textContent = notes;
+    notesSection.hidden = false;
+} else {
+    notesSection.hidden = true;
+}
+
+if (order.orderDate) {
+    const parsedDate = new Date(order.orderDate);
+
+    document.getElementById("confirmationDate").textContent =
+        Number.isNaN(parsedDate.getTime())
+            ? "Unavailable"
+            : parsedDate.toLocaleString();
+}
+
+confirmationItems.innerHTML = order.items.map(function (item) {
+    const image = document.createElement("img");
+
+    image.className = "confirmation-item-image";
+    image.src = item.image || "";
+    image.alt = item.name || "Ordered product";
+    image.loading = "lazy";
+
+    image.addEventListener("error", function () {
+        image.style.display = "none";
+    });
+
+    const info = document.createElement("div");
+    info.className = "confirmation-item-info";
+
+    const name = document.createElement("h3");
+    name.textContent = item.name || "Product";
+
+    const business = document.createElement("p");
+    business.textContent = item.farmerBusiness || "Local farm";
+
+    const quantity = document.createElement("p");
+    quantity.textContent =
+        "Quantity: " + item.quantity + " " + (item.unit || "");
+
+    info.append(name, business, quantity);
+
+    const price = document.createElement("div");
+    price.className = "confirmation-item-price";
+    price.textContent = formatPrice(item.subtotal || 0);
+
+    const row = document.createElement("div");
+    row.className = "confirmation-item";
+
+    row.append(image, info, price);
+
+    return row;
+}).forEach(function (row) {
+    confirmationItems.appendChild(row);
+});
+
+messageElement.textContent =
+    "Your order details are saved in this browser for this demonstration.";
+
+
+});
