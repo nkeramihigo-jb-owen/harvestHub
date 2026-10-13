@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details | HarvestHub</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/app.js" defer></script>
+</head>
+<body>
+
+
+<header class="site-header marketplace-header">
+    <div class="container header-content">
+        <a href="marketplace.html" class="logo">HarvestHub</a>
+
+        <nav class="main-nav">
+            <a href="marketplace.html" class="nav-link">Marketplace</a>
+            <a href="cart.html" class="nav-link">Cart (<span id="cartCount">0</span>)</a>
+            <button type="button" class="logout-button" id="logoutButton">
+                Logout
+            </button>
+        </nav>
+    </div>
+</header>
+
+<main class="container product-details-main">
+    <a href="marketplace.html" class="back-link">← Back to Marketplace</a>
+
+    <section id="productDetails" class="product-details-layout">
+        <p>Loading product details...</p>
+    </section>
+
+    <p id="productMessage" class="form-message" role="status" aria-live="polite"></p>
+</main>
+
+<footer class="site-footer">
+    <div class="container">
+        <p>© 2026 HarvestHub. All rights reserved.</p>
+    </div>
+</footer>
+
+
+</body>
+</html>
