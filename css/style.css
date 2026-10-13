@@ -1532,7 +1532,7 @@ font-weight: 700;
 
 .dashboard-main {
 min-height: 70vh;
-}
+} 
 
 .dashboard-welcome {
 padding: 65px 0;
@@ -1813,6 +1813,66 @@ width: 100%;
     max-width: 100%;
     font-size: 12px;
     padding: 10px 8px;
+}
+
+}
+/* HEADER LAYOUT FIX */
+
+.site-header {
+width: 100%;
+}
+
+.site-header .header-content {
+display: flex;
+justify-content: space-between;
+align-items: center;
+gap: 18px;
+flex-wrap: wrap;
+}
+
+.site-header .logo {
+flex-shrink: 0;
+text-decoration: none;
+}
+
+.site-header .header-nav {
+display: flex;
+align-items: center;
+justify-content: flex-end;
+gap: 22px;
+flex-wrap: wrap;
+}
+
+.site-header .header-nav a {
+white-space: nowrap;
+}
+
+.site-header .header-nav button {
+flex-shrink: 0;
+}
+
+@media (max-width: 650px) {
+.site-header .header-content {
+justify-content: center;
+gap: 14px;
+padding-top: 15px;
+padding-bottom: 15px;
+}
+
+.site-header .logo {
+    width: 100%;
+    text-align: center;
+}
+
+.site-header .header-nav {
+    width: 100%;
+    justify-content: center;
+    gap: 12px 18px;
+}
+
+.site-header .header-nav a,
+.site-header .header-nav button {
+    font-size: 13px;
 }
 
 }
