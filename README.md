@@ -13,7 +13,7 @@ This project is built using HTML, CSS, and JavaScript. It uses browser local sto
 ## Features
 
 * **Welcome Page:** Introduces HarvestHub and directs buyers to the marketplace journey.
-* **Demo Login:** Allows buyers to enter their name and password without creating an account.
+* **Login:** Allows buyers to enter their name and password without creating an account.
 * **Product Marketplace:** Displays agricultural products with images, prices, descriptions, and availability.
 * **Product Search:** Allows buyers to search for products by name, description, seller, or farmer name.
 * **Product Details:** Displays detailed product information, seller information, contact details, and available quantities.
@@ -33,7 +33,7 @@ This project is built using HTML, CSS, and JavaScript. It uses browser local sto
 
 ## Project Structure
 
-```
+
 HARVESTHUB_BUYER_MARKETPLACE/
 │
 ├── index.html
@@ -54,7 +54,7 @@ HARVESTHUB_BUYER_MARKETPLACE/
 │   └── Product images (.jfif)
 │
 └── README.md
-```
+
 
 ## Getting Started
 
